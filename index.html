@@ -1,108 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Рост вовлечённости — ДОБРОТА</title>
-  <style>
-    :root { --bg:#fff; --fg:#111; --muted:#666; --accent:#111; }
-    * { box-sizing: border-box; }
-    body { margin:0; font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial; color:var(--fg); background:var(--bg); }
-    .wrap { max-width:960px; margin:0 auto; padding:24px; }
-    header { padding:48px 0 24px; text-align:center; }
-    h1 { font-size:40px; margin:0 0 12px; letter-spacing:.5px; }
-    p.lead { color:var(--muted); margin:0 0 20px; font-size:18px; }
-    .cta { display:inline-flex; gap:12px; margin-top:8px; }
-    .btn { padding:12px 18px; border:1px solid var(--accent); color:var(--bg); background:var(--accent); text-decoration:none; border-radius:8px; }
-    .btn.alt { background:transparent; color:var(--fg); }
-    section { padding:40px 0; border-top:1px solid #eee; }
-    h2 { margin:0 0 12px; font-size:26px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
-    .card { border:1px solid #eee; border-radius:12px; padding:18px; }
-    ul { margin:10px 0 0 18px; }
-    footer { text-align:center; padding:32px 0 48px; color:var(--muted); }
-    /* Черно-белая эстетика, место под аватар/маскот */
-    .logo { font-weight:700; letter-spacing:1px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДОБРОТА</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(120deg, #111 60%, #fff 100%);
+            color: #222;
+        }
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 18vh;
+        }
+        h1 {
+            font-size: 7vw;
+            letter-spacing: 0.08em;
+            color: #fff;
+            text-shadow: 0 2px 18px #111, 0 2px 4px #222;
+            font-weight: 900;
+        }
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 20px;
+        }
+        .buttons a {
+            padding: 13px 40px;
+            font-size: 1.08rem;
+            text-decoration: none;
+            color: #fff;
+            background: #222;
+            border-radius: 10px;
+            border: none;
+            transition: 0.2s;
+            box-shadow: 0 0 10px #1118;
+        }
+        .buttons a:hover {
+            background: #444;
+        }
+        .contacts {
+            margin-bottom: 40px;
+            font-size: 1.10rem;
+        }
+        .contacts a {
+            color: #222;
+            background: #fafafa;
+            padding: 3px 12px;
+            border-radius: 6px;
+            margin: 0 9px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .contacts a:hover {
+            background: #e1e1e1;
+            color: #444;
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">ДОБРОТА</div>
-      <h1>Рост вовлечённости в соцсетях</h1>
-      <p class="lead">Тесты, прогрев, актив, органичное усиление метрик без лишней суеты.</p>
-      <div class="cta">
-        <a class="btn" href="https://t.me/your_username" target="_blank" rel="noopener">Написать в Telegram</a>
-        <a class="btn alt" href="#plans">Пакеты и цены</a>
-      </div>
-    </header>
-
-    <section id="proof">
-      <h2>Кейсы</h2>
-      <div class="grid">
-        <div class="card"><b>+240% ER</b> за 30 дней в нише инфо‑продуктов.</div>
-        <div class="card"><b>+18% CTR</b> в сторис после сценариев прогрева.</div>
-        <div class="card"><b>ROI 3.1x</b> на тестовом пакете за 2 недели.</div>
-      </div>
-    </section>
-
-    <section id="services">
-      <h2>Что делаю</h2>
-      <div class="grid">
-        <div class="card">
-          Аудит контента и воронки.
-          <ul><li>Разбор профиля</li><li>Точки роста</li><li>План на 2 недели</li></ul>
+    <div class="centered">
+        <h1>ДОБРОТА</h1>
+        <div class="buttons">
+            <a href="page1.html">Страница 1</a>
+            <a href="page2.html">Страница 2</a>
+            <a href="page3.html">Страница 3</a>
+            <a href="page4.html">Страница 4</a>
+            <a href="page5.html">Страница 5</a>
         </div>
-        <div class="card">
-          Прогрев и актив.
-          <ul><li>Сценарии</li><li>Инструменты</li><li>Мониторинг</li></ul>
-        </div>
-        <div class="card">
-          Лидогенерация.
-          <ul><li>Офферы</li><li>Оптимизация CTA</li><li>Пиксели</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="plans">
-      <h2>Пакеты</h2>
-      <div class="grid">
-        <div class="card">
-          <b>Старт</b> — 9 900₽
-          <ul><li>Аудит</li><li>7 дней сопровождения</li><li>Отчёт</li></ul>
-        </div>
-        <div class="card">
-          <b>Рост</b> — 24 900₽
-          <ul><li>Контент‑план</li><li>Прогрев</li><li>Метрики</li></ul>
-        </div>
-        <div class="card">
-          <b>Про</b> — 49 900₽
-          <ul><li>End‑to‑end настройка</li><li>Еженедельные спринты</li><li>ROI‑контроль</li></ul>
-        </div>
-      </div>
-      <div class="cta">
-        <a class="btn" href="https://t.me/your_username" target="_blank" rel="noopener">Забронировать слот</a>
-      </div>
-    </section>
-
-    <section id="faq">
-      <h2>FAQ</h2>
-      <div class="grid">
-        <div class="card"><b>Срок запуска?</b><br/>От 48 часов после брифа.</div>
-        <div class="card"><b>Гарантии?</b><br/>Прозрачные метрики и чек‑пойнты.</div>
-        <div class="card"><b>Оплата?</b><br/>Поэтапно, с отчётами.</div>
-      </div>
-    </section>
-
-    <footer>© ДОБРОТА — рост вовлечённости</footer>
-  </div>
-  <script>
-    // Пример отправки простого события конверсии
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.btn').forEach(b => b.addEventListener('click', () => {
-        console.log('cta_click', b.textContent.trim());
-      }));
-    });
-  </script>
+    </div>
+    <div class="contacts">
+        <b>Контакты:</b>
+        <a href="https://t.me/твой_ник">Telegram</a>
+        <a href="https://lolz.live/members/твой_ид">Lolz.live</a>
+    </div>
 </body>
 </html>
