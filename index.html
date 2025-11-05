@@ -25,6 +25,7 @@
             --card-hover: #f8f8f8;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --particle-color: rgba(0, 0, 0, 0.1);
         }
         
         body {
@@ -297,7 +298,7 @@
             pointer-events: none;
         }
         
-        .floating-elements {
+        .floating-particles {
             position: fixed;
             top: 0;
             left: 0;
@@ -307,10 +308,10 @@
             pointer-events: none;
         }
         
-        .floating-element {
+        .particle {
             position: absolute;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.03);
+            background: var(--particle-color);
             animation: float 20s infinite linear;
         }
         
@@ -440,7 +441,7 @@
 <body>
     <!-- Декоративные элементы -->
     <div class="background-pattern"></div>
-    <div class="floating-elements" id="floatingElements"></div>
+    <div class="floating-particles" id="floatingParticles"></div>
     
     <!-- Переключатель темы -->
     <div class="theme-toggle" id="themeToggle">
@@ -577,30 +578,40 @@
     </div>
 
     <script>
-        // Создание плавающих элементов
-        document.addEventListener('DOMContentLoaded', function() {
-            const elementsContainer = document.getElementById('floatingElements');
-            const elementsCount = 8;
+        // Создание плавающих частиц
+        function createParticles() {
+            const particlesContainer = document.getElementById('floatingParticles');
+            particlesContainer.innerHTML = '';
             
-            for (let i = 0; i < elementsCount; i++) {
-                const element = document.createElement('div');
-                element.classList.add('floating-element');
+            const particlesCount = 20;
+            const isDarkMode = document.body.classList.contains('dark-theme');
+            const particleColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
                 
-                const size = Math.random() * 100 + 50;
+                const size = Math.random() * 3 + 1; // Маленькие частицы 1-4px
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
                 const delay = Math.random() * 20;
                 const duration = Math.random() * 10 + 20;
                 
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                element.style.left = `${left}%`;
-                element.style.top = `${top}%`;
-                element.style.animationDelay = `${delay}s`;
-                element.style.animationDuration = `${duration}s`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.background = particleColor;
                 
-                elementsContainer.appendChild(element);
+                particlesContainer.appendChild(particle);
             }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем частицы при загрузке
+            createParticles();
             
             // Анимация появления секций при скролле
             const sections = document.querySelectorAll('.section');
@@ -715,6 +726,7 @@
                     document.documentElement.style.setProperty('--card-hover', 'rgba(255, 255, 255, 0.08)');
                     document.documentElement.style.setProperty('--shadow', '0 5px 15px rgba(255, 255, 255, 0.05)');
                     document.documentElement.style.setProperty('--shadow-hover', '0 10px 25px rgba(255, 255, 255, 0.1)');
+                    document.documentElement.style.setProperty('--particle-color', 'rgba(255, 255, 255, 0.1)');
                 } else {
                     this.innerHTML = '<i class="fas fa-moon"></i>';
                     document.documentElement.style.setProperty('--primary', '#000000');
@@ -728,7 +740,11 @@
                     document.documentElement.style.setProperty('--card-hover', '#f8f8f8');
                     document.documentElement.style.setProperty('--shadow', '0 5px 15px rgba(0, 0, 0, 0.08)');
                     document.documentElement.style.setProperty('--shadow-hover', '0 10px 25px rgba(0, 0, 0, 0.12)');
+                    document.documentElement.style.setProperty('--particle-color', 'rgba(0, 0, 0, 0.1)');
                 }
+                
+                // Пересоздаем частицы с правильным цветом
+                createParticles();
             });
         });
     </script>
