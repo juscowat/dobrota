@@ -14,15 +14,17 @@
         }
         
         :root {
-            --primary: #8a2be2;
-            --primary-light: #9d4edd;
-            --accent: #00b4d8;
-            --text: #ffffff;
-            --text-secondary: #b0b0b0;
-            --bg: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --card-hover: rgba(255, 255, 255, 0.05);
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #333333;
+            --text: #000000;
+            --text-secondary: #666666;
+            --bg: #ffffff;
+            --card-bg: #ffffff;
+            --card-border: #e0e0e0;
+            --card-hover: #f8f8f8;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
         }
         
         body {
@@ -52,10 +54,7 @@
             font-weight: 800;
             letter-spacing: -0.02em;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             position: relative;
         }
         
@@ -87,18 +86,19 @@
         .search-input {
             width: 100%;
             padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 50px;
             color: var(--text);
             font-size: 1rem;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow);
         }
         
         .search-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
         }
         
         .search-input::placeholder {
@@ -128,6 +128,8 @@
             text-transform: uppercase;
             position: relative;
             padding-left: 20px;
+            display: flex;
+            align-items: center;
         }
         
         .section-title::before {
@@ -169,6 +171,7 @@
             position: relative;
             overflow: hidden;
             height: 100%;
+            box-shadow: var(--shadow);
         }
         
         .links-list a::before {
@@ -178,15 +181,15 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.03), transparent);
             transition: left 0.6s ease;
         }
         
         .links-list a:hover {
             background: var(--card-hover);
-            border-color: var(--primary-light);
+            border-color: var(--accent);
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.15);
+            box-shadow: var(--shadow-hover);
         }
         
         .links-list a:hover::before {
@@ -197,9 +200,10 @@
             width: 24px;
             height: 24px;
             margin-right: 15px;
-            opacity: 0.8;
+            opacity: 0.7;
             transition: opacity 0.3s ease, transform 0.3s ease;
             flex-shrink: 0;
+            color: var(--primary);
         }
         
         .links-list a:hover .link-icon {
@@ -221,7 +225,7 @@
         .contacts {
             margin-top: 80px;
             padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--card-border);
             text-align: center;
         }
         
@@ -245,19 +249,21 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
             text-decoration: none;
             color: var(--text);
             font-weight: 400;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow);
         }
         
         .contact-links a:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--card-hover);
             border-color: var(--primary);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
         }
         
         /* Анимации */
@@ -277,21 +283,21 @@
         }
         
         /* Декоративные элементы */
-        .background-grid {
+        .background-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.03) 0%, transparent 50%);
             background-size: 50px 50px;
             z-index: -1;
             pointer-events: none;
         }
         
-        .floating-dots {
+        .floating-elements {
             position: fixed;
             top: 0;
             left: 0;
@@ -301,18 +307,16 @@
             pointer-events: none;
         }
         
-        .dot {
+        .floating-element {
             position: absolute;
-            width: 1px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
+            background: rgba(0, 0, 0, 0.03);
             animation: float 20s infinite linear;
         }
         
         @keyframes float {
             0% {
-                transform: translateY(0) translateX(0);
+                transform: translateY(0) translateX(0) rotate(0deg);
                 opacity: 0;
             }
             10% {
@@ -322,7 +326,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -363,16 +367,16 @@
         }
         
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.05);
         }
         
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.3);
         }
         
         /* Уведомление */
@@ -384,7 +388,7 @@
             background: var(--primary);
             color: white;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-hover);
             transform: translateY(100px);
             opacity: 0;
             transition: all 0.3s ease;
@@ -396,13 +400,13 @@
             opacity: 1;
         }
         
-        /* Темная тема переключатель */
+        /* Переключатель темы */
         .theme-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -412,11 +416,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 100;
+            box-shadow: var(--shadow);
         }
         
         .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card-hover);
             transform: rotate(30deg);
+            box-shadow: var(--shadow-hover);
         }
         
         .no-results {
@@ -433,8 +439,8 @@
 </head>
 <body>
     <!-- Декоративные элементы -->
-    <div class="background-grid"></div>
-    <div class="floating-dots" id="floatingDots"></div>
+    <div class="background-pattern"></div>
+    <div class="floating-elements" id="floatingElements"></div>
     
     <!-- Переключатель темы -->
     <div class="theme-toggle" id="themeToggle">
@@ -571,29 +577,29 @@
     </div>
 
     <script>
-        // Создание плавающих точек
+        // Создание плавающих элементов
         document.addEventListener('DOMContentLoaded', function() {
-            const dotsContainer = document.getElementById('floatingDots');
-            const dotsCount = 15;
+            const elementsContainer = document.getElementById('floatingElements');
+            const elementsCount = 8;
             
-            for (let i = 0; i < dotsCount; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
+            for (let i = 0; i < elementsCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
                 
-                const size = Math.random() * 2 + 1;
+                const size = Math.random() * 100 + 50;
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
                 const delay = Math.random() * 20;
-                const duration = Math.random() * 10 + 15;
+                const duration = Math.random() * 10 + 20;
                 
-                dot.style.width = `${size}px`;
-                dot.style.height = `${size}px`;
-                dot.style.left = `${left}%`;
-                dot.style.top = `${top}%`;
-                dot.style.animationDelay = `${delay}s`;
-                dot.style.animationDuration = `${duration}s`;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.left = `${left}%`;
+                element.style.top = `${top}%`;
+                element.style.animationDelay = `${delay}s`;
+                element.style.animationDuration = `${duration}s`;
                 
-                dotsContainer.appendChild(dot);
+                elementsContainer.appendChild(element);
             }
             
             // Анимация появления секций при скролле
@@ -694,24 +700,34 @@
             // Переключение темы
             const themeToggle = document.getElementById('themeToggle');
             themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('light-theme');
+                document.body.classList.toggle('dark-theme');
                 
-                if (document.body.classList.contains('light-theme')) {
+                if (document.body.classList.contains('dark-theme')) {
                     this.innerHTML = '<i class="fas fa-sun"></i>';
-                    document.documentElement.style.setProperty('--bg', '#f5f5f5');
-                    document.documentElement.style.setProperty('--text', '#333333');
-                    document.documentElement.style.setProperty('--text-secondary', '#666666');
-                    document.documentElement.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.03)');
-                    document.documentElement.style.setProperty('--card-border', 'rgba(0, 0, 0, 0.1)');
-                    document.documentElement.style.setProperty('--card-hover', 'rgba(0, 0, 0, 0.05)');
-                } else {
-                    this.innerHTML = '<i class="fas fa-moon"></i>';
-                    document.documentElement.style.setProperty('--bg', '#0a0a0a');
+                    document.documentElement.style.setProperty('--primary', '#ffffff');
+                    document.documentElement.style.setProperty('--secondary', '#000000');
+                    document.documentElement.style.setProperty('--accent', '#cccccc');
                     document.documentElement.style.setProperty('--text', '#ffffff');
                     document.documentElement.style.setProperty('--text-secondary', '#b0b0b0');
-                    document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.03)');
+                    document.documentElement.style.setProperty('--bg', '#000000');
+                    document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.05)');
                     document.documentElement.style.setProperty('--card-border', 'rgba(255, 255, 255, 0.1)');
-                    document.documentElement.style.setProperty('--card-hover', 'rgba(255, 255, 255, 0.05)');
+                    document.documentElement.style.setProperty('--card-hover', 'rgba(255, 255, 255, 0.08)');
+                    document.documentElement.style.setProperty('--shadow', '0 5px 15px rgba(255, 255, 255, 0.05)');
+                    document.documentElement.style.setProperty('--shadow-hover', '0 10px 25px rgba(255, 255, 255, 0.1)');
+                } else {
+                    this.innerHTML = '<i class="fas fa-moon"></i>';
+                    document.documentElement.style.setProperty('--primary', '#000000');
+                    document.documentElement.style.setProperty('--secondary', '#ffffff');
+                    document.documentElement.style.setProperty('--accent', '#333333');
+                    document.documentElement.style.setProperty('--text', '#000000');
+                    document.documentElement.style.setProperty('--text-secondary', '#666666');
+                    document.documentElement.style.setProperty('--bg', '#ffffff');
+                    document.documentElement.style.setProperty('--card-bg', '#ffffff');
+                    document.documentElement.style.setProperty('--card-border', '#e0e0e0');
+                    document.documentElement.style.setProperty('--card-hover', '#f8f8f8');
+                    document.documentElement.style.setProperty('--shadow', '0 5px 15px rgba(0, 0, 0, 0.08)');
+                    document.documentElement.style.setProperty('--shadow-hover', '0 10px 25px rgba(0, 0, 0, 0.12)');
                 }
             });
         });
