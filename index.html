@@ -3,85 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ДОБРОТА</title>
+    <title>ДОБРОТА | Главная страница</title>
     <style>
-        body {
+        /* Сброс и базовые стили */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-            background: linear-gradient(120deg, #111 60%, #fff 100%);
-            color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 20px;
         }
+        
+        /* Контейнер с основным контентом */
         .centered {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 18vh;
+            margin-top: 10vh;
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
         }
+        
+        /* Заголовок */
         h1 {
-            font-size: 7vw;
+            font-size: clamp(3rem, 8vw, 6rem);
             letter-spacing: 0.08em;
             color: #fff;
-            text-shadow: 0 2px 18px #111, 0 2px 4px #222;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.7);
             font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            padding-bottom: 15px;
         }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
+            border-radius: 2px;
+        }
+        
+        /* Подзаголовок */
+        .subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+        
+        /* Контейнер кнопок */
         .buttons {
-            margin-top: 35px;
-            display: flex;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
+            width: 100%;
+            max-width: 900px;
         }
+        
+        /* Стили кнопок */
         .buttons a {
-            padding: 13px 40px;
-            font-size: 1.08rem;
+            padding: 16px 24px;
+            font-size: 1.05rem;
             text-decoration: none;
             color: #fff;
-            background: #222;
-            border-radius: 10px;
-            border: none;
-            transition: 0.2s;
-            box-shadow: 0 0 10px #1118;
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
+        
+        .buttons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.6), rgba(106, 13, 173, 0.8));
+            z-index: -1;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
         .buttons a:hover {
-            background: #444;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+            border-color: rgba(138, 43, 226, 0.8);
         }
+        
+        .buttons a:hover::before {
+            transform: translateX(0);
+        }
+        
+        /* Контакты */
         .contacts {
-            margin-bottom: 40px;
-            font-size: 1.10rem;
+            margin: 40px 0;
+            font-size: 1.1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
+        
+        .contacts b {
+            color: #e0e0e0;
+            margin-right: 10px;
+        }
+        
         .contacts a {
-            color: #222;
-            background: #fafafa;
-            padding: 3px 12px;
-            border-radius: 6px;
-            margin: 0 9px;
+            color: #ffffff;
+            background: rgba(138, 43, 226, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
             text-decoration: none;
-            transition: 0.2s;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        
         .contacts a:hover {
-            background: #e1e1e1;
-            color: #444;
+            background: rgba(138, 43, 226, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .centered {
+                margin-top: 5vh;
+            }
+            
+            .buttons {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .contacts {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contacts b {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+        }
+        
+        /* Анимация появления элементов */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .centered > * {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .centered > *:nth-child(1) { animation-delay: 0.1s; }
+        .centered > *:nth-child(2) { animation-delay: 0.2s; }
+        .centered > *:nth-child(3) { animation-delay: 0.3s; }
+        
+        .buttons a:nth-child(1) { animation-delay: 0.4s; }
+        .buttons a:nth-child(2) { animation-delay: 0.5s; }
+        .buttons a:nth-child(3) { animation-delay: 0.6s; }
+        .buttons a:nth-child(4) { animation-delay: 0.7s; }
+        .buttons a:nth-child(5) { animation-delay: 0.8s; }
+        
+        /* Футер */
+        footer {
+            margin-top: auto;
+            padding: 20px 0;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        /* Дополнительные декоративные элементы */
+        .decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(138, 43, 226, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Декоративные элементы -->
+    <div class="decoration" id="decoration"></div>
+    
     <div class="centered">
         <h1>ДОБРОТА</h1>
+        <p class="subtitle">Полезные инструменты и ресурсы для вашего удобства</p>
         <div class="buttons">
-            <a href="page1.html">Страница 1</a>
-            <a href="page2.html">Страница 2</a>
-            <a href="page3.html">Страница 3</a>
-            <a href="page4.html">Страница 4</a>
-            <a href="page5.html">Страница 5</a>
+            <a href="page1.html">Накрутка Соц.Сетей</a>
+            <a href="page2.html">Скачать Windows</a>
+            <a href="page3.html">Скачать Office</a>
+            <a href="page4.html">Активация</a>
+            <a href="page5.html">Что-то ещё</a>
         </div>
     </div>
+    
     <div class="contacts">
         <b>Контакты:</b>
-        <a href="https://t.me/твой_ник">Telegram</a>
-        <a href="https://lolz.live/members/твой_ид">Lolz.live</a>
+        <a href="https://t.me/твой_ник">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+            </svg>
+            Telegram
+        </a>
+        <a href="https://lolz.live/members/твой_ид">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm-3 8h2v8h-2v-8zm3 0h2v8h-2v-8zm3 0h2v8h-2v-8z"/>
+            </svg>
+            Lolz.live
+        </a>
     </div>
+    
+    <footer>
+        &copy; 2023 ДОБРОТА. Все права защищены.
+    </footer>
+    
+    <script>
+        // Создание декоративных элементов
+        document.addEventListener('DOMContentLoaded', function() {
+            const decoration = document.getElementById('decoration');
+            const dotsCount = 30;
+            
+            for (let i = 0; i < dotsCount; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                
+                // Случайная позиция
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Случайная задержка анимации
+                const delay = Math.random() * 15;
+                
+                dot.style.left = `${left}%`;
+                dot.style.top = `${top}%`;
+                dot.style.animationDelay = `${delay}s`;
+                
+                decoration.appendChild(dot);
+            }
+        });
+    </script>
 </body>
 </html>
