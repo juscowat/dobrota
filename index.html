@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ДОБРОТА - полезные сервисы, статьи и инструменты для работы с Windows, Office и социальными сетями">
-    <title>ДОБРОТА | Полезные сервисы и статьи</title>
+    <title>ДОБРОТА | Полезные сервисы</title>
     <style>
         /* Сброс и базовые стили */
         * {
@@ -13,202 +12,195 @@
             box-sizing: border-box;
         }
         
-        :root {
-            --primary-color: #8a2be2;
-            --primary-light: rgba(138, 43, 226, 0.1);
-            --primary-medium: rgba(138, 43, 226, 0.2);
-            --primary-dark: rgba(138, 43, 226, 0.4);
-            --text-color: #ffffff;
-            --bg-dark: #000000;
-            --bg-medium: #1a1a1a;
-            --bg-light: #2d2d2d;
-            --border-radius: 12px;
-            --transition: all 0.3s ease;
-        }
-        
         body {
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 50%, var(--bg-light) 100%);
-            color: var(--text-color);
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: #000000;
+            color: #ffffff;
             line-height: 1.6;
-            padding: 20px;
+            padding: 40px 20px;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
         
         /* Заголовок */
         .header {
             text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 80px;
+            position: relative;
         }
         
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            letter-spacing: 0.08em;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(138, 43, 226, 0.7);
-            font-weight: 900;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             position: relative;
         }
         
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        }
+        
         .tagline {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            font-weight: 300;
+            letter-spacing: 0.02em;
         }
         
         /* Разделы */
         .section {
-            margin-bottom: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: var(--transition);
-        }
-        
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            margin-bottom: 60px;
+            position: relative;
         }
         
         .section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(138, 43, 226, 0.3);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            padding-left: 20px;
         }
         
-        .section-title svg {
-            width: 24px;
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
             height: 24px;
+            background: #ffffff;
         }
         
         /* Список ссылок */
         .links-list {
             list-style: none;
             padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
         }
         
         .links-list li {
-            margin-bottom: 0;
+            margin-bottom: 12px;
+            position: relative;
         }
         
         .links-list a {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 15px 20px;
-            background: var(--primary-light);
-            border: 1px solid var(--primary-dark);
-            border-radius: var(--border-radius);
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             text-decoration: none;
-            color: var(--text-color);
+            color: #ffffff;
             font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 400;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .links-list a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
             height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s ease;
         }
         
         .links-list a:hover {
-            background: var(--primary-medium);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(138, 43, 226, 0.3);
-            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .links-list a:hover::before {
+            left: 100%;
         }
         
         .link-icon {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .links-list a:hover .link-icon {
+            opacity: 1;
         }
         
         /* Контакты */
         .contacts {
-            margin-top: 60px;
-            font-size: 1.1rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            padding: 30px;
-            border-top: 1px solid rgba(138, 43, 226, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--border-radius);
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
         
         .contacts b {
-            color: #e0e0e0;
-            margin-right: 10px;
-        }
-        
-        .contacts a {
-            color: var(--text-color);
-            background: var(--primary-medium);
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            transition: var(--transition);
-            border: 1px solid var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            display: block;
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            margin-bottom: 20px;
             font-weight: 500;
         }
         
-        .contacts a:hover {
-            background: var(--primary-dark);
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
         
-        /* Адаптивность для мобильных устройств */
-        @media (max-width: 768px) {
-            .links-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .contacts {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .contacts b {
-                margin-right: 0;
-                margin-bottom: 5px;
-            }
-            
-            .section {
-                padding: 20px 15px;
-            }
-        }
-        
-        /* Анимация появления элементов */
+        /* Анимации */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -217,36 +209,55 @@
         }
         
         .header {
-            animation: fadeInUp 0.6s ease forwards;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
-        .section:nth-child(1) { animation: fadeInUp 0.6s ease 0.2s forwards; opacity: 0; }
-        .section:nth-child(2) { animation: fadeInUp 0.6s ease 0.4s forwards; opacity: 0; }
-        .section:nth-child(3) { animation: fadeInUp 0.6s ease 0.6s forwards; opacity: 0; }
-        
-        .contacts {
-            animation: fadeInUp 0.6s ease 0.8s forwards;
+        .section {
+            animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
         }
         
-        /* Дополнительные декоративные элементы */
-        .decoration {
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+        
+        .contacts {
+            animation: fadeInUp 0.8s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+        
+        /* Декоративные элементы */
+        .background-grid {
             position: fixed;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: -1;
+            pointer-events: none;
+        }
+        
+        .floating-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
         
         .dot {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background-color: rgba(138, 43, 226, 0.5);
+            width: 1px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            animation: float 15s infinite linear;
+            animation: float 20s infinite linear;
         }
         
         @keyframes float {
@@ -266,126 +277,121 @@
             }
         }
         
-        /* Улучшения доступности */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+            
+            .header {
+                margin-bottom: 60px;
+            }
+            
+            .links-list a {
+                padding: 18px 20px;
+                font-size: 1rem;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-links a {
+                width: 200px;
+                justify-content: center;
+            }
         }
         
-        /* Фокус для доступности */
-        a:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
+        /* Скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
         
-        /* Индикатор загрузки */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
         }
         
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid var(--primary-color);
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
 <body>
     <!-- Декоративные элементы -->
-    <div class="decoration" id="decoration"></div>
+    <div class="background-grid"></div>
+    <div class="floating-dots" id="floatingDots"></div>
     
     <div class="container">
         <!-- Заголовок -->
         <header class="header">
             <h1>ДОБРОТА</h1>
-            <p class="tagline">Полезные сервисы, статьи и инструменты для работы с Windows, Office и социальными сетями</p>
+            <p class="tagline">Полезные сервисы и инструменты</p>
         </header>
         
         <!-- Сервисы -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 19l-5-5 1.4-1.4 3.6 3.6 7.6-7.6 1.4 1.4-9 9z"/>
-                </svg>
-                Сервисы
-            </h2>
+            <h2 class="section-title">Сервисы</h2>
             <ul class="links-list">
                 <li>
-                    <a href="#downloads" class="service-link">
+                    <a href="#malwtool">
                         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                         </svg>
-                        <span>Скачать Windows/Office</span>
+                        Cкачать Windows, Office
                     </a>
                 </li>
                 <li>
-                    <a href="#activation" class="service-link">
-                        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                        </svg>
-                        <span>Активация Windows/Office</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#apps" class="service-link">
+                    <a href="#apps">
                         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
                         </svg>
-                        <span>Список полезных приложений</span>
+                        Активация Windows, Office
                     </a>
                 </li>
                 <li>
-                    <a href="#social" class="service-link">
+                    <a href="#online">
                         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                            <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.07 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
                         </svg>
-                        <span>Накрутка Соц.Сетей</span>
+                        Список полезных онлайн-сервисов
                     </a>
                 </li>
+                <li>
+                    <a href="#zalgo">
+                        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                        </svg>
+                        Список полезных приложений
+                    </a>
+                </li>
+                <li>
             </ul>
         </section>
         
         <!-- Статьи -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-                </svg>
-                Статьи
-            </h2>
+            <h2 class="section-title">Статьи</h2>
             <ul class="links-list">
                 <li>
-                    <a href="#lan-article" class="article-link">
+                    <a href="#lan">
                         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/>
                         </svg>
-                        <span>Как локальная сеть может пригодиться каждому</span>
+                        Как локальная сеть может пригодиться каждому
                     </a>
                 </li>
                 <li>
-                    <a href="#other-articles" class="article-link">
+                    <a href="#other">
                         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0 4h2v-2H3v2zm12 0h2v-2h-2v2zm0 0h2v-2h-2v2zM3 9h2V7H3v2zm12-4h2V3h-2v2zm4 0h2V3h-2v2zm0 16h2v-2h-2v2zm-4 0h2v-2h-2v2zm4-12h2v-2h-2v2zm0 4h2v-2h-2v2zm0 4h2v-2h-2v2zm-8-4h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2V7h-2v2zm0 0h2V7h-2v2z"/>
                         </svg>
-                        <span>Остальные мелочи</span>
+                        Остальные мелочи
                     </a>
                 </li>
             </ul>
@@ -393,91 +399,80 @@
         
         <!-- Другое -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                </svg>
-                Другое
-            </h2>
+            <h2 class="section-title">Другое</h2>
             <ul class="links-list">
                 <li>
-                    <a href="#something" class="other-link">
+                    <a href="#python">
                         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
-                        <span>Что-то интересное</span>
+                        Скрипты Python
+                    </a>
+                </li>
+                <li>
+                    <a href="#js">
+                        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Приколы на JavaScript
+                    </a>
+                </li>
+                <li>
+                    <a href="#links">
+                        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Список ссылок malw.link
                     </a>
                 </li>
             </ul>
         </section>
         
-        <!-- Индикатор загрузки -->
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Загрузка...</p>
-        </div>
-        
         <!-- Контакты -->
         <div class="contacts">
-            <b>Контакты:</b>
-            <a href="https://t.me/твой_ник" aria-label="Наш Telegram канал">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                </svg>
-                Telegram
-            </a>
-            <a href="https://lolz.live/members/твой_ид" aria-label="Наша страница на Lolz.live">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 8h2v8h-2v-8zm3 0h2v8h-2v-8zm3 0h2v8h-2v-8z"/>
-                </svg>
-                Lolz.live
-            </a>
+            <b>Контакты</b>
+            <div class="contact-links">
+                <a href="https://t.me/Juscowat">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                    Telegram
+                </a>
+                <a href="https://lolz.live/dobrota/">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 8h2v8h-2v-8zm3 0h2v8h-2v-8zm3 0h2v8h-2v-8z"/>
+                    </svg>
+                    Lolz.live
+                </a>
+            </div>
         </div>
     </div>
-    
+
     <script>
-        // Создание декоративных элементов
+        // Создание плавающих точек
         document.addEventListener('DOMContentLoaded', function() {
-            const decoration = document.getElementById('decoration');
-            const dotsCount = 30;
+            const dotsContainer = document.getElementById('floatingDots');
+            const dotsCount = 15;
             
             for (let i = 0; i < dotsCount; i++) {
                 const dot = document.createElement('div');
                 dot.classList.add('dot');
                 
-                // Случайная позиция
+                const size = Math.random() * 2 + 1;
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 15;
                 
-                // Случайная задержка анимации
-                const delay = Math.random() * 15;
-                
+                dot.style.width = `${size}px`;
+                dot.style.height = `${size}px`;
                 dot.style.left = `${left}%`;
                 dot.style.top = `${top}%`;
                 dot.style.animationDelay = `${delay}s`;
+                dot.style.animationDuration = `${duration}s`;
                 
-                decoration.appendChild(dot);
+                dotsContainer.appendChild(dot);
             }
-            
-            // Обработка кликов по ссылкам
-            const links = document.querySelectorAll('a[href^="#"]');
-            const loading = document.getElementById('loading');
-            
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = this.getAttribute('href').substring(1);
-                    
-                    // Показать индикатор загрузки
-                    loading.style.display = 'block';
-                    
-                    // Имитация загрузки контента
-                    setTimeout(() => {
-                        loading.style.display = 'none';
-                        alert(`Здесь будет загружен контент для раздела: ${target}`);
-                    }, 1000);
-                });
-            });
         });
     </script>
 </body>
