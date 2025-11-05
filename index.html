@@ -408,6 +408,32 @@
             }
         }
         
+        /* Переключатель темы */
+        .theme-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        
+        .theme-toggle:hover {
+            background: var(--card-hover);
+            transform: rotate(45deg) scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+        
         /* Адаптивность */
         @media (max-width: 768px) {
             body {
@@ -485,32 +511,6 @@
             opacity: 1;
         }
         
-        /* Переключатель темы */
-        .theme-toggle {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            z-index: 100;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-        }
-        
-        .theme-toggle:hover {
-            background: var(--card-hover);
-            transform: rotate(45deg) scale(1.1);
-            box-shadow: var(--shadow-hover);
-        }
-        
         .no-results {
             text-align: center;
             padding: 50px;
@@ -553,7 +553,8 @@
             <h2 class="section-title">Сервисы</h2>
             <ul class="links-list" id="services-list">
                 <li>
-                    <a href="Windows.html" target="_blank">
+                    <!-- Убрано target="_blank" чтобы открывалось в той же вкладке -->
+                    <a href="windows-office.html">
                         <i class="fas fa-download link-icon"></i>
                         MalwTool, скачать и активировать Windows, Office
                         <span class="link-badge">Популярный</span>
@@ -646,6 +647,7 @@
         <div class="contacts">
             <b>Контакты</b>
             <div class="contact-links">
+                <!-- Внешние ссылки оставляем с target="_blank" -->
                 <a href="https://t.me/твой_ник" target="_blank">
                     <i class="fab fa-telegram"></i>
                     Telegram
@@ -781,10 +783,13 @@
             // Обработка кликов по ссылкам
             document.querySelectorAll('.links-list a').forEach(link => {
                 link.addEventListener('click', function(e) {
+                    // Проверяем, является ли ссылка внутренней (начинается с #)
                     if (this.getAttribute('href').startsWith('#')) {
                         e.preventDefault();
                         showNotification();
                     }
+                    // Внешние ссылки (на другие сайты) открываются как обычно
+                    // Внутренние ссылки (на другие страницы сайта) открываются в той же вкладке
                 });
             });
             
