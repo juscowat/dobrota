@@ -1,1 +1,26 @@
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Визитка — [Твое имя]</title>
+  <style>
+    body { font-family: sans-serif; max-width: 450px; margin: 0 auto; text-align: center;}
+    img {border-radius:50%; margin:24px 0;}
+    .btn { margin:8px;padding:12px 18px;display:inline-block;background:#222;color:#fff;text-decoration:none;border-radius:16px;}
+    nav {margin:2em 0;}
+  </style>
+</head>
+<body>
+  <img src="avatar.jpg" width="100" alt="avatar"/>
+  <h1>Твое имя</h1>
+  <p>Краткое описание или сфера</p>
+  <p>
+    <a href="https://t.me/ТвойТГ" target="_blank">Telegram</a> |
+    <a href="https://lolz.live/members/ТвойID" target="_blank">Lolz.live</a>
+  </p>
+  <nav>
+    <a href="windows.html" class="btn">Скачать Windows</a>
+    <a href="activate.html" class="btn" style="background:#292;">Активация</a>
+  </nav>
+</body>
+</html>
