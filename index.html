@@ -29,9 +29,6 @@
             --particle-color: rgba(0, 0, 0, 0.08);
             --gradient-1: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             --gradient-2: linear-gradient(135deg, #e4e8f0 0%, #f5f7fa 100%);
-            --donator-color: #e67e22;
-            --donator-bg: rgba(230, 126, 34, 0.1);
-            --donator-border: rgba(230, 126, 34, 0.2);
         }
 
         body {
@@ -236,115 +233,6 @@
             border-radius: 6px;
             font-weight: 600;
             letter-spacing: 0.5px;
-        }
-
-        /* Стили для донатеров (выпадающий список) */
-        .donators-dropdown {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            max-width: 320px;
-            margin: 0 auto;
-        }
-
-        .donators-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 18px 28px;
-            background: var(--donator-bg);
-            border: 1px solid var(--donator-border);
-            border-radius: 16px;
-            color: var(--donator-color);
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-        }
-
-        .donators-btn:hover {
-            background: rgba(230, 126, 34, 0.15);
-            border-color: var(--donator-color);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .donators-btn i {
-            transition: transform 0.3s ease;
-        }
-
-        .donators-btn.active i {
-            transform: rotate(180deg);
-        }
-
-        .donators-list {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            box-shadow: var(--shadow-hover);
-            margin-top: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 10;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .donators-list.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .donator-item {
-            display: flex;
-            align-items: center;
-            padding: 16px 20px;
-            text-decoration: none;
-            color: var(--text);
-            border-bottom: 1px solid var(--card-border);
-            transition: all 0.2s ease;
-        }
-
-        .donator-item:last-child {
-            border-bottom: none;
-        }
-
-        .donator-item:hover {
-            background: var(--card-hover);
-        }
-
-        .donator-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
-            color: var(--donator-color);
-            flex-shrink: 0;
-        }
-
-        .donator-name {
-            font-weight: 500;
-            color: var(--text);
-            flex: 1;
-        }
-
-        .donator-username {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            background: var(--donator-bg);
-            padding: 4px 8px;
-            border-radius: 4px;
-            margin-left: 8px;
         }
 
         /* Контакты */
@@ -576,10 +464,6 @@
                 font-size: 1rem;
             }
 
-            .donators-dropdown {
-                max-width: 100%;
-            }
-
             .contact-links {
                 flex-direction: column;
                 align-items: center;
@@ -598,17 +482,17 @@
 
         /* Скроллбар */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
 
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.05);
-            border-radius: 4px;
+            border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb {
             background: rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
+            border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -734,50 +618,6 @@
             </ul>
         </section>
 
-        <!-- Донатеры -->
-        <section class="section" id="donators-section">
-            <h2 class="section-title">Наши донатеры</h2>
-            <div class="donators-dropdown">
-                <button class="donators-btn" id="donatorsBtn">
-                    <i class="fas fa-heart"></i>
-                    Список донатеров
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="donators-list" id="donatorsList">
-                    <a href="https://t.me/username1" target="_blank" class="donator-item">
-                        <i class="fas fa-heart donator-icon"></i>
-                        <span class="donator-name">Иван Иванов</span>
-                        <span class="donator-username">@username1</span>
-                    </a>
-                    <a href="https://t.me/username2" target="_blank" class="donator-item">
-                        <i class="fas fa-heart donator-icon"></i>
-                        <span class="donator-name">Петр Петров</span>
-                        <span class="donator-username">@username2</span>
-                    </a>
-                    <a href="https://t.me/username3" target="_blank" class="donator-item">
-                        <i class="fas fa-heart donator-icon"></i>
-                        <span class="donator-name">Анна Смирнова</span>
-                        <span class="donator-username">@username3</span>
-                    </a>
-                    <a href="https://t.me/username4" target="_blank" class="donator-item">
-                        <i class="fas fa-heart donator-icon"></i>
-                        <span class="donator-name">Сергей Козлов</span>
-                        <span class="donator-username">@username4</span>
-                    </a>
-                    <a href="https://t.me/username5" target="_blank" class="donator-item">
-                        <i class="fas fa-heart donator-icon"></i>
-                        <span class="donator-name">Мария Новикова</span>
-                        <span class="donator-username">@username5</span>
-                    </a>
-                    <a href="https://t.me/username6" target="_blank" class="donator-item">
-                        <i class="fas fa-heart donator-icon"></i>
-                        <span class="donator-name">Дмитрий Соколов</span>
-                        <span class="donator-username">@username6</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Контакты -->
         <div class="contacts">
             <b>Контакты</b>
@@ -851,23 +691,6 @@
 
             sections.forEach(section => {
                 observer.observe(section);
-            });
-
-            // Выпадающий список донатеров
-            const donatorsBtn = document.getElementById('donatorsBtn');
-            const donatorsList = document.getElementById('donatorsList');
-
-            donatorsBtn.addEventListener('click', function() {
-                this.classList.toggle('active');
-                donatorsList.classList.toggle('show');
-            });
-
-            // Закрытие выпадающего списка при клике вне его
-            document.addEventListener('click', function(event) {
-                if (!donatorsBtn.contains(event.target) && !donatorsList.contains(event.target)) {
-                    donatorsBtn.classList.remove('active');
-                    donatorsList.classList.remove('show');
-                }
             });
 
             // Поиск
@@ -974,9 +797,6 @@
                     document.documentElement.style.setProperty('--particle-color', 'rgba(255, 255, 255, 0.15)');
                     document.documentElement.style.setProperty('--gradient-1', 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)');
                     document.documentElement.style.setProperty('--gradient-2', 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)');
-                    document.documentElement.style.setProperty('--donator-color', '#e67e22');
-                    document.documentElement.style.setProperty('--donator-bg', 'rgba(230, 126, 34, 0.15)');
-                    document.documentElement.style.setProperty('--donator-border', 'rgba(230, 126, 34, 0.25)');
                 } else {
                     this.innerHTML = '<i class="fas fa-moon"></i>';
                     document.documentElement.style.setProperty('--primary', '#000000');
@@ -993,9 +813,6 @@
                     document.documentElement.style.setProperty('--particle-color', 'rgba(0, 0, 0, 0.08)');
                     document.documentElement.style.setProperty('--gradient-1', 'linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%)');
                     document.documentElement.style.setProperty('--gradient-2', 'linear-gradient(135deg, #e4e8f0 0%, #f5f7fa 100%)');
-                    document.documentElement.style.setProperty('--donator-color', '#e67e22');
-                    document.documentElement.style.setProperty('--donator-bg', 'rgba(230, 126, 34, 0.1)');
-                    document.documentElement.style.setProperty('--donator-border', 'rgba(230, 126, 34, 0.2)');
                 }
 
                 // Пересоздаем частицы с правильным цветом
