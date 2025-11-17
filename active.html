@@ -230,6 +230,8 @@
             font-weight: 600;
             transition: all 0.3s ease;
             cursor: pointer;
+            border: none;
+            font-family: inherit;
         }
         
         .activation-btn:hover {
@@ -239,7 +241,7 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
-        /* Командная строка */
+        /* Командная строка - ФИКС ПРОКРУТКИ */
         .command-section {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -247,6 +249,8 @@
             padding: 35px;
             margin-top: 20px;
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
         
         .command-header {
@@ -283,6 +287,7 @@
             font-size: 1.1rem;
             line-height: 1.5;
             word-break: break-all;
+            user-select: all;
         }
         
         .copy-btn {
@@ -299,6 +304,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            font-family: inherit;
         }
         
         .copy-btn:hover {
@@ -595,6 +601,42 @@
         .copy-notification.show {
             transform: translateX(-50%) translateY(0);
         }
+
+        /* Чекбоксы в карточках */
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .feature-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .feature-checkbox.checked {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        
+        .feature-checkbox.checked::after {
+            content: '✓';
+            font-size: 12px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -725,6 +767,14 @@
                     <i class="fas fa-file-word activation-icon"></i>
                     <div class="activation-title">Активация Office</div>
                     <div class="activation-subtitle">Тот же инструмент поддерживает активацию Microsoft Office 2016, 2019, 2021 и 365.</div>
+                    
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-checkbox"></div>
+                            <span>Скопировать команду</span>
+                        </li>
+                    </ul>
+                    
                     <button class="activation-btn" onclick="copyCommand()">
                         <i class="fas fa-terminal"></i>
                         Скопировать команду
@@ -735,6 +785,14 @@
                     <i class="fas fa-desktop activation-icon"></i>
                     <div class="activation-title">Поддерживаемые версии</div>
                     <div class="activation-subtitle">Office 2016, 2019, 2021, 365. Все версии включая Professional Plus, Standard и другие.</div>
+                    
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-checkbox checked"></div>
+                            <span>Подробнее о версиях</span>
+                        </li>
+                    </ul>
+                    
                     <button class="activation-btn" onclick="showOfficeInstructions()">
                         <i class="fas fa-info-circle"></i>
                         Подробнее о версиях
