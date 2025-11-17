@@ -232,6 +232,8 @@
             cursor: pointer;
             border: none;
             font-family: inherit;
+            width: 100%;
+            justify-content: center;
         }
         
         .activation-btn:hover {
@@ -241,7 +243,7 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
-        /* Командная строка - ФИКС ПРОКРУТКИ */
+        /* Командная строка */
         .command-section {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -554,6 +556,11 @@
             .blob-1, .blob-2 {
                 display: none;
             }
+            
+            .activation-btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -562,6 +569,10 @@
             }
             
             .warning-box {
+                padding: 20px;
+            }
+            
+            .command-section {
                 padding: 20px;
             }
         }
@@ -582,24 +593,29 @@
             animation: fadeInUp 0.8s ease-out forwards;
         }
         
-        /* Уведомление о копировании */
+        /* Уведомление о копировании - ФИКС ДЛЯ МОБИЛЬНЫХ */
         .copy-notification {
             position: fixed;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: var(--success);
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
             font-weight: 500;
             box-shadow: var(--shadow-hover);
-            transition: transform 0.4s ease;
+            transition: transform 0.4s ease, opacity 0.4s ease;
             z-index: 1000;
+            opacity: 0;
+            max-width: 90%;
+            text-align: center;
+            font-size: 0.9rem;
         }
         
         .copy-notification.show {
             transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
         /* Чекбоксы в карточках */
@@ -637,6 +653,15 @@
             font-size: 12px;
             font-weight: bold;
         }
+
+        /* Фикс для мобильного скролла */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            -webkit-overflow-scrolling: touch;
+        }
     </style>
 </head>
 <body>
@@ -653,7 +678,7 @@
         <i class="fas fa-moon"></i>
     </div>
     
-    <!-- Уведомление о копировании -->
+    <!-- Уведомление о копировании - ИСПРАВЛЕННАЯ ВЕРСИЯ -->
     <div class="copy-notification" id="copyNotification">
         Команда скопирована в буфер обмена!
     </div>
@@ -890,13 +915,22 @@
             });
         }
         
-        // Показать уведомление о копировании
+        // Показать уведомление о копировании - ИСПРАВЛЕННАЯ ВЕРСИЯ
         function showCopyNotification() {
             const notification = document.getElementById('copyNotification');
-            notification.classList.add('show');
+            
+            // Сначала скрываем уведомление, если оно уже показано
+            notification.classList.remove('show');
+            
+            // Даем время для сброса анимации
             setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
+                notification.classList.add('show');
+                
+                // Автоматически скрываем через 2 секунды
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2000);
+            }, 10);
         }
         
         // Показать инструкции
@@ -1000,6 +1034,17 @@
                 // Пересоздаем частицы с правильным цветом
                 createParticles();
             });
+        });
+
+        // Фикс для мобильного скролла - скрываем уведомление при скролле
+        let scrollTimer;
+        window.addEventListener('scroll', function() {
+            const notification = document.getElementById('copyNotification');
+            if (notification.classList.contains('show')) {
+                notification.classList.remove('show');
+            }
+            
+            clearTimeout(scrollTimer);
         });
     </script>
 </body>
