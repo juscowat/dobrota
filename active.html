@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Активировать Windows и Office | ДОБРОТА</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Сброс и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #333333;
+            --text: #000000;
+            --text-secondary: #666666;
+            --bg: #fefefe;
+            --card-bg: #ffffff;
+            --card-border: #e8e8e8;
+            --card-hover: #f5f5f5;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --particle-color: rgba(0, 0, 0, 0.08);
+            --gradient-1: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            --gradient-2: linear-gradient(135deg, #e4e8f0 0%, #f5f7fa 100%);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Навигация */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-link:hover {
+            background: var(--card-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Заголовок */
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            border-radius: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+        }
+        
+        /* Разделы */
+        .section {
+            margin-bottom: 70px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--text);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            padding-left: 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        /* Карточки активации */
+        .activation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .activation-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        
+        .activation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.03), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .activation-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .activation-card:hover::before {
+            left: 100%;
+        }
+        
+        .activation-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            color: var(--primary);
+        }
+        
+        .activation-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        
+        .activation-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .activation-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: var(--secondary);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .activation-btn:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Командная строка */
+        .command-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 35px;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .command-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .command-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--success);
+        }
+        
+        .command-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .command-box {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .command-text {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .command-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        /* Инструкции */
+        .instructions {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 35px;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .instruction-step {
+            margin-bottom: 30px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .instruction-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Предупреждения */
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .warning-icon {
+            color: var(--warning);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .warning-content h4 {
+            color: var(--warning);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .warning-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Декоративные элементы */
+        .background-design {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+        }
+        
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-1);
+            top: -100px;
+            left: -100px;
+            animation: floatBlob 25s ease-in-out infinite;
+        }
+        
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-2);
+            bottom: -50px;
+            right: -50px;
+            animation: floatBlob 30s ease-in-out infinite reverse;
+        }
+        
+        @keyframes floatBlob {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, 20px) rotate(5deg);
+            }
+            50% {
+                transform: translate(0, 40px) rotate(0deg);
+            }
+            75% {
+                transform: translate(-20px, 20px) rotate(-5deg);
+            }
+        }
+        
+        .geometric-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.03) 2%, transparent 20%),
+                radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.03) 2%, transparent 20%);
+            background-size: 60px 60px;
+            opacity: 0.6;
+        }
+        
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--particle-color);
+            animation: float 25s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Переключатель темы */
+        .theme-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        
+        .theme-toggle:hover {
+            background: var(--card-hover);
+            transform: rotate(45deg) scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+            
+            .header {
+                margin-bottom: 60px;
+            }
+            
+            .activation-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .activation-card {
+                padding: 25px;
+            }
+            
+            .instructions {
+                padding: 25px;
+            }
+            
+            .command-box {
+                padding: 20px;
+            }
+            
+            .command-text {
+                font-size: 0.95rem;
+            }
+            
+            .blob-1, .blob-2 {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .instruction-step {
+                padding-left: 30px;
+            }
+            
+            .warning-box {
+                padding: 20px;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Уведомление о копировании */
+        .copy-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: var(--shadow-hover);
+            transition: transform 0.4s ease;
+            z-index: 1000;
+        }
+        
+        .copy-notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Декоративные элементы -->
+    <div class="background-design">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="geometric-pattern"></div>
+    </div>
+    <div class="floating-particles" id="floatingParticles"></div>
+    
+    <!-- Переключатель темы -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <!-- Уведомление о копировании -->
+    <div class="copy-notification" id="copyNotification">
+        Команда скопирована в буфер обмена!
+    </div>
+    
+    <div class="container">
+        <!-- Навигация -->
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Назад к сервисам
+        </a>
+
+        <!-- Заголовок -->
+        <header class="header">
+            <h1>Активация</h1>
+            <p class="tagline">Активируйте Windows и Office с помощью нашего инструмента</p>
+        </header>
+        
+        <!-- Активация Windows -->
+        <section class="section" id="windows-section">
+            <h2 class="section-title">Активировать Windows</h2>
+            <div class="activation-grid">
+                <div class="activation-card">
+                    <i class="fab fa-windows activation-icon"></i>
+                    <div class="activation-title">Автоматическая активация</div>
+                    <div class="activation-subtitle">Простой способ активации Windows с помощью нашего инструмента. Подходит для всех версий Windows 10/11.</div>
+                    <button class="activation-btn" onclick="copyCommand()">
+                        <i class="fas fa-terminal"></i>
+                        Скопировать команду
+                    </button>
+                </div>
+                
+                <div class="activation-card">
+                    <i class="fas fa-shield-alt activation-icon"></i>
+                    <div class="activation-title">Безопасная активация</div>
+                    <div class="activation-subtitle">Наш инструмент использует официальные методы активации и не содержит вредоносного кода.</div>
+                    <button class="activation-btn" onclick="showInstructions()">
+                        <i class="fas fa-book"></i>
+                        Инструкция по активации
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Командная строка -->
+            <div class="command-section">
+                <div class="command-header">
+                    <i class="fas fa-terminal command-icon"></i>
+                    <div class="command-title">Команда для активации</div>
+                </div>
+                
+                <div class="command-box">
+                    <div class="command-text" id="commandText">
+                        powershell -command "irm https://github.com/ImMALWARE/MalwTool/raw/refs/heads/main/MalwTool.ps1 | iex"
+                    </div>
+                    <button class="copy-btn" onclick="copyCommand()">
+                        <i class="far fa-copy"></i>
+                        Копировать
+                    </button>
+                </div>
+                
+                <div class="command-description">
+                    <p><strong>Для запуска активации выполните следующие действия:</strong></p>
+                </div>
+                
+                <div class="instructions">
+                    <div class="instruction-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Откройте PowerShell от имени администратора</div>
+                        <div class="step-description">
+                            Нажмите <strong>Win + X</strong> и выберите "Windows PowerShell (Администратор)" или найдите PowerShell в меню Пуск, щелкните правой кнопкой мыши и выберите "Запуск от имени администратора".
+                        </div>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Вставьте команду активации</div>
+                        <div class="step-description">
+                            Скопируйте команду выше и вставьте ее в окно PowerShell. Нажмите <strong>Enter</strong> для выполнения.
+                        </div>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Следуйте инструкциям</div>
+                        <div class="step-description">
+                            Инструмент автоматически определит вашу версию Windows и предложит варианты активации. Следуйте инструкциям на экране.
+                        </div>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Перезагрузка</div>
+                        <div class="step-description">
+                            После успешной активации перезагрузите компьютер для применения изменений.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Предупреждение -->
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <div class="warning-content">
+                    <h4>Важная информация</h4>
+                    <p>Перед активацией рекомендуется создать точку восстановления системы. Убедитесь, что у вас есть стабильное интернет-соединение. Активация может занять несколько минут в зависимости от скорости вашего интернета и системы.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Активация Office -->
+        <section class="section" id="office-section">
+            <h2 class="section-title">Активировать Office</h2>
+            <div class="activation-grid">
+                <div class="activation-card">
+                    <i class="fas fa-file-word activation-icon"></i>
+                    <div class="activation-title">Активация Office</div>
+                    <div class="activation-subtitle">Тот же инструмент поддерживает активацию Microsoft Office 2016, 2019, 2021 и 365.</div>
+                    <button class="activation-btn" onclick="copyCommand()">
+                        <i class="fas fa-terminal"></i>
+                        Скопировать команду
+                    </button>
+                </div>
+                
+                <div class="activation-card">
+                    <i class="fas fa-desktop activation-icon"></i>
+                    <div class="activation-title">Поддерживаемые версии</div>
+                    <div class="activation-subtitle">Office 2016, 2019, 2021, 365. Все версии включая Professional Plus, Standard и другие.</div>
+                    <button class="activation-btn" onclick="showOfficeInstructions()">
+                        <i class="fas fa-info-circle"></i>
+                        Подробнее о версиях
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Инструкции для Office -->
+            <div class="instructions">
+                <div class="instruction-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Запустите инструмент активации</div>
+                    <div class="step-description">
+                        Используйте ту же команду PowerShell для запуска инструмента активации. Инструмент автоматически определит установленные версии Office.
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Выберите Office в меню</div>
+                    <div class="step-description">
+                        После запуска инструмента выберите опцию активации Office в появившемся меню.
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Следуйте инструкциям</div>
+                    <div class="step-description">
+                        Инструмент предложит выбрать метод активации и проведет вас через весь процесс. Обычно это занимает 1-2 минуты.
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Проверка активации</div>
+                    <div class="step-description">
+                        После завершения откройте любое приложение Office (Word, Excel) и проверьте статус активации в меню "Файл" → "Учетная запись".
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Часто задаваемые вопросы -->
+        <section class="section" id="faq-section">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <div class="instructions">
+                <div class="instruction-step">
+                    <div class="step-number">?</div>
+                    <div class="step-title">Безопасен ли этот метод активации?</div>
+                    <div class="step-description">
+                        Да, инструмент использует официальные методы активации и не содержит вредоносного кода. Однако всегда рекомендуется использовать антивирусное программное обеспечение.
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="step-number">?</div>
+                    <div class="step-title">Что делать если активация не сработала?</div>
+                    <div class="step-description">
+                        Убедитесь, что запускаете PowerShell от имени администратора. Проверьте подключение к интернету. Если проблема persists, попробуйте отключить антивирус на время активации.
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="step-number">?</div>
+                    <div class="step-title">Нужно ли повторять активацию после обновления?</div>
+                    <div class="step-description">
+                        Обычно активация сохраняется после обновлений системы. Однако в некоторых случаях после крупных обновлений может потребоваться повторная активация.
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="step-number">?</div>
+                    <div class="step-title">Поддерживает ли инструмент Windows 7/8?</div>
+                    <div class="step-description">
+                        Инструмент в первую очередь предназначен для Windows 10/11. Для более старых версий могут потребоваться альтернативные методы активации.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Команда для активации
+        const activationCommand = 'powershell -command "irm https://github.com/ImMALWARE/MalwTool/raw/refs/heads/main/MalwTool.ps1 | iex"';
+        
+        // Функция копирования команды
+        function copyCommand() {
+            navigator.clipboard.writeText(activationCommand).then(() => {
+                showCopyNotification();
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+                // Fallback для старых браузеров
+                const textArea = document.createElement('textarea');
+                textArea.value = activationCommand;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showCopyNotification();
+            });
+        }
+        
+        // Показать уведомление о копировании
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Показать инструкции
+        function showInstructions() {
+            alert('Инструкция по активации:\n\n1. Запустите PowerShell от имени администратора\n2. Вставьте скопированную команду\n3. Нажмите Enter и следуйте инструкциям\n4. Перезагрузите компьютер после активации');
+        }
+        
+        function showOfficeInstructions() {
+            alert('Поддерживаемые версии Office:\n\n- Office 2016\n- Office 2019\n- Office 2021\n- Office 365\n\nВсе редакции: Professional Plus, Standard, Home & Business');
+        }
+        
+        // Создание плавающих частиц
+        function createParticles() {
+            const particlesContainer = document.getElementById('floatingParticles');
+            particlesContainer.innerHTML = '';
+            
+            const particlesCount = 25;
+            const isDarkMode = document.body.classList.contains('dark-theme');
+            const particleColor = isDarkMode ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)';
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 25;
+                const duration = Math.random() * 15 + 25;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.background = particleColor;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем частицы при загрузке
+            createParticles();
+            
+            // Анимация появления секций при скролле
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Переключение темы
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                
+                if (document.body.classList.contains('dark-theme')) {
+                    this.innerHTML = '<i class="fas fa-sun"></i>';
+                    document.documentElement.style.setProperty('--primary', '#ffffff');
+                    document.documentElement.style.setProperty('--secondary', '#000000');
+                    document.documentElement.style.setProperty('--accent', '#cccccc');
+                    document.documentElement.style.setProperty('--text', '#ffffff');
+                    document.documentElement.style.setProperty('--text-secondary', '#b0b0b0');
+                    document.documentElement.style.setProperty('--bg', '#0a0a0a');
+                    document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.08)');
+                    document.documentElement.style.setProperty('--card-border', 'rgba(255, 255, 255, 0.15)');
+                    document.documentElement.style.setProperty('--card-hover', 'rgba(255, 255, 255, 0.12)');
+                    document.documentElement.style.setProperty('--shadow', '0 8px 30px rgba(255, 255, 255, 0.08)');
+                    document.documentElement.style.setProperty('--shadow-hover', '0 15px 40px rgba(255, 255, 255, 0.12)');
+                    document.documentElement.style.setProperty('--particle-color', 'rgba(255, 255, 255, 0.15)');
+                    document.documentElement.style.setProperty('--gradient-1', 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)');
+                    document.documentElement.style.setProperty('--gradient-2', 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)');
+                } else {
+                    this.innerHTML = '<i class="fas fa-moon"></i>';
+                    document.documentElement.style.setProperty('--primary', '#000000');
+                    document.documentElement.style.setProperty('--secondary', '#ffffff');
+                    document.documentElement.style.setProperty('--accent', '#333333');
+                    document.documentElement.style.setProperty('--text', '#000000');
+                    document.documentElement.style.setProperty('--text-secondary', '#666666');
+                    document.documentElement.style.setProperty('--bg', '#fefefe');
+                    document.documentElement.style.setProperty('--card-bg', '#ffffff');
+                    document.documentElement.style.setProperty('--card-border', '#e8e8e8');
+                    document.documentElement.style.setProperty('--card-hover', '#f5f5f5');
+                    document.documentElement.style.setProperty('--shadow', '0 8px 30px rgba(0, 0, 0, 0.08)');
+                    document.documentElement.style.setProperty('--shadow-hover', '0 15px 40px rgba(0, 0, 0, 0.12)');
+                    document.documentElement.style.setProperty('--particle-color', 'rgba(0, 0, 0, 0.08)');
+                    document.documentElement.style.setProperty('--gradient-1', 'linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%)');
+                    document.documentElement.style.setProperty('--gradient-2', 'linear-gradient(135deg, #e4e8f0 0%, #f5f7fa 100%)');
+                }
+                
+                // Пересоздаем частицы с правильным цветом
+                createParticles();
+            });
+        });
+    </script>
+</body>
+</html>
